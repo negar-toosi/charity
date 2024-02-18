@@ -28,18 +28,17 @@
                             <div class="news-block">
                                 <div class="news-block-top">
                                     <a href="news-detail.html">
-                                        <img src="{% static 'images/news/medium-shot-volunteers-with-clothing-donations.jpg' %}" class="news-image img-fluid" alt="">
+                                        <img src="{{ n.image.url }}" class="news-image img-fluid" alt="">
                                     </a>
-
+                                    
                                     <div class="news-category-block">
+                                        {% for cat in n.category.all %}
                                         <a href="#" class="category-block-link">
-                                            Lifestyle,
-                                        </a>
-
-                                        <a href="#" class="category-block-link">
-                                            Clothing Donation
-                                        </a>
+                                            {{ cat.name }}
+                                        </a> 
+                                        {% endfor %}
                                     </div>
+                                    
                                 </div>
                                 
                                 <div class="news-block-info">

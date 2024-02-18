@@ -1,5 +1,5 @@
 from django.contrib import admin
-from news.models import News
+from news.models import News,Category
 # Register your models here.
 
 @admin.register(News)
@@ -8,4 +8,4 @@ class NewsAdmin(admin.ModelAdmin):
     empty_value_display = '-empty-'
     list_display = ('title','author', 'views', 'created_date', 'status', 'published_date')
     list_filter = ('status','author')
-# admin.site.register(News,NewsAdmin)
+admin.site.register(Category)
