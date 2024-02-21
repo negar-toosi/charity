@@ -1,0 +1,11 @@
+{% load static %}
+<div class="category-block d-flex flex-column">
+    <h5 class="mb-3">Categories</h5>
+    {% for name,count in categories.items %}
+    <a href="{% url 'news:category' cat_name=name %}" class="category-block-link">
+        {{ name }}
+        <span class="badge">{{ count }}</span>
+    </a>
+    {% endfor %}
+ 
+</div>

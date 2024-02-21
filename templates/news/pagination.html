@@ -1,0 +1,45 @@
+<style>
+    .pagination {
+        display: inline-block;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    .pagination .prev, .pagination .next {
+        margin: 0 4px;
+    }
+</style>
+</head>
+
+<div class="pagination">
+    {% if news.has_previous %}
+    <a href="?page={{ news.previous_page_number }}" class="prev">&laquo; Previous</a>
+    {% endif %}
+    
+    {% for i in news.paginator.page_range %}
+        <a href="?page={{ i }}">{{ i }}</a>
+    {% endfor %}
+
+    {% if news.has_next %}
+        <a href="?page={{ news.next_page_number }}" class="next">Next &raquo;</a>
+    {% endif %}
+</div>
+

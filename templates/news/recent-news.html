@@ -1,0 +1,36 @@
+{% load static %}
+
+<h5 class="mt-5 mb-3">Recent news</h5>
+{% for n in news %}
+<div class="news-block news-block-two-col d-flex mt-4">
+  <div class="news-block-two-col-image-wrap">
+    <a href="{% url 'news:news_detail' nid=n.id %}">
+      <img
+        src="{{ n.image.url }}"
+        class="news-image img-fluid"
+        alt=""
+      />
+    </a>
+  </div>
+
+  <div class="news-block-two-col-info">
+    <div class="news-block-title mb-2">
+      <h6>
+        <a href="{% url 'news:news_detail' nid=n.id %}" class="news-block-title-link"
+          >{{ n.title }}</a
+        >
+      </h6>
+    </div>
+
+    <div class="news-block-date">
+      <p>
+        <i class="bi-calendar4 custom-icon me-1"></i>
+        {{ n.published_date|date:"D M Y"}}
+      </p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  
+</div>

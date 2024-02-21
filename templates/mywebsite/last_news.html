@@ -1,0 +1,94 @@
+
+{% load static%}
+<style>
+    /* Slider Container */
+    .slider-container {
+        width: 80%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Slider Content */
+    .slider-content {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    /* Individual Post */
+    .post {
+        flex: 0 0 100%; /* Makes each post take full width of slider */
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .post img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Slider Controls */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        z-index: 1;
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+</style>
+</head>
+
+
+<div class="slider-container">
+    <button class="prev">&#10094; Previous</button>
+    <div class="slider-content">
+        {% for n in news %}
+            <div class="post">
+                <img src="{{ n.image.url }}" alt="Post {{ n.title }} Image">
+                <h2>{{ n.title }}</h2>
+                {% for cat in n.category.all %}
+                    <p>
+                        <a href="#" class="category-block-link">
+                            {{ cat.name }}
+                        </a> 
+                    </p>
+                {% endfor %}
+                <p>{{ n.published_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="next">Next &#10095;</button>
+</div>
+
+<script>
+    // JavaScript for Slider functionality
+    const sliderContent = document.querySelector('.slider-content');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const postWidth = document.querySelector('.post').offsetWidth;
+
+    // Next Button Click Handler
+    nextButton.addEventListener('click', () => {
+        sliderContent.style.transform = `translateX(-${postWidth}px)`;
+    });
+
+    // Previous Button Click Handler
+    prevButton.addEventListener('click', () => {
+        sliderContent.style.transform = `translateX(0px)`;
+    });
+</script>
+
