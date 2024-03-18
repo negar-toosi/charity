@@ -17,12 +17,32 @@ from django.contrib import admin
 from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 from mywebsite import views
+from mywebsite.sitemaps import StaticViewSitemap
+from news.sitemaps import NewsSitemap
 from news import views
+import debug_toolbar
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'news': NewsSitemap,
+  
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mywebsite.urls')),
     path('news/',include('news.urls')),
+    path('accounts/',include('accounts.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', include('robots.urls')),
+    path('__debug__/', include(debug_toolbar.urls)), 
+    path('summernote/', include('django_summernote.urls')),
+    path('captcha/', include('captcha.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
+    
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

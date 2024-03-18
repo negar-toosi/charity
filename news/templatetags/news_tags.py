@@ -1,5 +1,5 @@
 from django import template
-from news.models import News,Category
+from news.models import News,Category, Comments
 register = template.Library()
 
 @register.inclusion_tag('news/recent-news.html')
@@ -15,3 +15,7 @@ def newsCategories():
     for name in categories:
         cat_dict[name] = news.filter(category=name).count()
     return {'categories': cat_dict}
+
+@register.simple_tag(name='comments_count')
+def function(nid):
+    return Comments.objects.filter(news=nid).count()

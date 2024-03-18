@@ -44,6 +44,27 @@ https://templatemo.com/tm-581-kind-heart-charity
 
               <a href="mailto:info@company.com"> info@company.com </a>
             </p>
+            {% if request.user.is_authenticated %}
+              <p class="d-flex mb-0">
+                <i class="bi-envelope me-2"></i>
+
+                <a href="#">logged in as {{ request.user.username }}</a>
+              </p>
+              <p class="d-flex mb-0">
+                <i class="bi-envelope me-2"></i>
+                <a href="{% url 'accounts:logout' %}">logout</a>
+              </p>
+            {% else %}
+              <p class="d-flex mb-0">
+                <i></i>
+                <a href="{% url 'accounts:login' %}?next={{request.path}}">login</a>
+              </p>
+              <p class="d-flex mb-0">
+                <i></i>
+                <a href="{% url 'accounts:signup' %}">signup</a>
+              </p>
+            {% endif %}
+            </ul>
           </div>
 
           <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">

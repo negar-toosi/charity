@@ -33,7 +33,7 @@
                                         
                                         <div class="news-category-block">
                                             {% for cat in n.category.all %}
-                                            <a href="#" class="category-block-link">
+                                            <a href="{% url 'news:category' cat_name=cat.name %}" class="category-block-link">
                                                 {{ cat.name }}
                                             </a> 
                                             {% endfor %}
@@ -64,7 +64,7 @@
                                             <div class="news-block-comment">
                                                 <p>
                                                     <i class="bi-chat-left custom-icon me-1"></i>
-                                                    32 Comments
+                                                    {% comments_count n.id %} Comments
                                                 </p>
                                             </div>
 

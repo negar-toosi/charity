@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from mywebsite.forms import ContactForm
 from django.contrib import messages
+
 # Create your views here.
 def index_view(request):
     return render(request,'mywebsite/index.html')

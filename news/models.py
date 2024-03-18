@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
+from taggit.managers import TaggableManager
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=225)
@@ -18,7 +20,7 @@ class News(models.Model):
     category = models.ManyToManyField(Category)
     status = models.BooleanField(default=False)
     login_require = models.BooleanField(default=False)
-    # tags = TaggableManager()
+    tags = TaggableManager()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True)
@@ -31,7 +33,26 @@ class News(models.Model):
             return True
         else:
             return False
+    
+    def get_absolute_url(self):
+        return reverse('news:news_detail', kwargs={'nid':self.id})
+
 
 class Meta:
     ordering = ('-created_date',)
+
+class Comments(models.Model):
+    news = models.ForeignKey(News,on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('-created_date',)
+
+    def __str__(self):
+        return self.name
     

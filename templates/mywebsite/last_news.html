@@ -59,7 +59,7 @@
         {% for n in news %}
             <div class="post">
                 <img src="{{ n.image.url }}" alt="Post {{ n.title }} Image">
-                <h2>{{ n.title }}</h2>
+                <h2><a href="{% url 'news:news_detail' nid=n.id %}">{{ n.title }}</a></h2>
                 {% for cat in n.category.all %}
                     <p>
                         <a href="#" class="category-block-link">

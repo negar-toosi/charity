@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load humanize %}
 <h5 class="mt-5 mb-3">Recent news</h5>
 {% for n in news %}
 <div class="news-block news-block-two-col d-flex mt-4">
@@ -25,8 +25,9 @@
     <div class="news-block-date">
       <p>
         <i class="bi-calendar4 custom-icon me-1"></i>
-        {{ n.published_date|date:"D M Y"}}
+        {{ n.published_date|naturaltime }}
       </p>
+      
     </div>
   </div>
 </div>
