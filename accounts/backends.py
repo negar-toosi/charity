@@ -6,8 +6,7 @@ class EmailOrUsernameModelBackend(ModelBackend):
     Authentication backend which allows users to authenticate using either their
     username or email address
     """
-
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    def authenticate(self, request=None, username=None, password=None, **kwargs):
         user_model = get_user_model()
 
         if username is None:

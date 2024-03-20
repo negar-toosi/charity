@@ -34,19 +34,21 @@ def login_view(request):
             else:
                 username_or_email = form.cleaned_data.get('email')
                 password = form.cleaned_data.get('password')
-                user = EmailOrUsernameModelBackend.authenticate(request=request, email=username_or_email, password=password)
+                user = backend.authenticate(request=request, email=username_or_email, password=password)
                 if user is not None:  
                     login(request,user) 
                     next_url = request.POST.get('next')
                     return redirect(next_url)
+            errors = None
         else:
             errors = form.errors
+            print(errors)
             messages.add_message(request,messages.ERROR,'your username or password was wrong')
 
     else:
         form = CustomAuthenticationForm()
         errors = None
-    
+   
     context = {'form':form, 'errors':errors}
     return render(request,'accounts/login.html',context)
 

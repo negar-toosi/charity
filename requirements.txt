@@ -15,7 +15,7 @@ django-simple-captcha==0.5.12
 django-summernote==0.8.20.0
 django-taggit==4.0.0
 django-translations==1.3.0
-pillow==10.2.0
+Pillow==9.5.0
 pytz==2024.1
 robot==20071211
 six==1.16.0
