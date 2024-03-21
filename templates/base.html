@@ -1,4 +1,6 @@
 {% load static %}
+
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,15 +13,18 @@
     <title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
 
     <!-- CSS FILES -->
+    {% compress css %}
     <link rel="icon" href="{% static 'images/favicon.ico' %}" />
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
 
     <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet" />
 
     <link
       href="{% static 'css/templatemo-kind-heart-charity.css' %}"
       rel="stylesheet"
-    />
+    /> -->
+    <link href="{% static 'CACHE/css/output.2a238edf9568.css' %}" rel="stylesheet" />
+    {% endcompress %}
     <!--
 
 TemplateMo 581 Kind Heart Charity
@@ -258,9 +263,11 @@ https://templatemo.com/tm-581-kind-heart-charity
     </footer>
 
     <!-- JAVASCRIPT FILES -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
+    {% compress js %}
+    <!-- <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script> -->
+    <script src="{% static 'CACHE/js/output.71f26c4104ef.js' %}"></script>
     <script>
       setTimeout(function() {
           if ($('#msg').length > 0) {
@@ -268,6 +275,6 @@ https://templatemo.com/tm-581-kind-heart-charity
           }
       }, 2000)
     </script>
-    
+    {% endcompress %}
   </body>
 </html>
