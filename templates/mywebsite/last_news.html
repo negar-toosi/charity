@@ -1,94 +1,38 @@
 
-{% load static%}
-<style>
-    /* Slider Container */
-    .slider-container {
-        width: 80%;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-    }
+{% load static %}
 
-    /* Slider Content */
-    .slider-content {
-        display: flex;
-        transition: transform 0.5s ease;
-    }
-
-    /* Individual Post */
-    .post {
-        flex: 0 0 100%; /* Makes each post take full width of slider */
-        padding: 20px;
-        box-sizing: border-box;
-        text-align: center;
-    }
-
-    .post img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
-
-    /* Slider Controls */
-    .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        z-index: 1;
-    }
-
-    .prev {
-        left: 0;
-    }
-
-    .next {
-        right: 0;
-    }
-</style>
-</head>
-
-
-<div class="slider-container">
-    <button class="prev">&#10094; Previous</button>
-    <div class="slider-content">
-        {% for n in news %}
-            <div class="post">
-                <img src="{{ n.image.url }}" alt="Post {{ n.title }} Image">
-                <h2><a href="{% url 'news:news_detail' nid=n.id %}">{{ n.title }}</a></h2>
-                {% for cat in n.category.all %}
-                    <p>
-                        <a href="#" class="category-block-link">
-                            {{ cat.name }}
-                        </a> 
-                    </p>
-                {% endfor %}
-                <p>{{ n.published_date }}</p>
+<section class="news-section section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12 mb-5">
+                <h2>Latest News</h2>
             </div>
-        {% endfor %}
+        </div>
+        <div class="row">
+            {% for n in news %}
+            <div class="col-lg-4 col-12">
+                <div class="news-block">
+                    <div class="news-block-top">
+                        <a href="{% url 'news:news_detail' nid=n.id %}">
+                            <img alt="" class="news-image img-fluid" src="{{ n.image.url }}">
+                        </a>
+                        {% for cat in n.category.all %}
+                            <div class="news-category-block">
+                                <a class="category-block-link" href="#">{{ cat.name }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="news-block-info">
+                        <div class="news-block-title mb-2">
+                            <h4><a class="news-block-title-link" href="{% url 'news:news_detail' nid=n.id %}">{{ n.title }}</a></h4>
+                        </div>
+                        <div class="news-block-body">
+                            <p>{{ n.content }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <button class="next">Next &#10095;</button>
-</div>
-
-<script>
-    // JavaScript for Slider functionality
-    const sliderContent = document.querySelector('.slider-content');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    const postWidth = document.querySelector('.post').offsetWidth;
-
-    // Next Button Click Handler
-    nextButton.addEventListener('click', () => {
-        sliderContent.style.transform = `translateX(-${postWidth}px)`;
-    });
-
-    // Previous Button Click Handler
-    prevButton.addEventListener('click', () => {
-        sliderContent.style.transform = `translateX(0px)`;
-    });
-</script>
-
+</section>

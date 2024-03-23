@@ -27,3 +27,6 @@ def contact_view(request):
 
 def about_view(request):
     return render(request,'mywebsite/about.html')
+
+def custom_404(request, exception):
+    return render(request, 'mywebsite/404.html', status=404)
