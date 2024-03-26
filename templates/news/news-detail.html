@@ -73,7 +73,9 @@
                                 </div>
 
                                     <div class="news-block-body">
-                                        {{ news.content|safe }}
+                                   
+                                        {{ news.content|safe|escape }}
+                                      
                                     </div>
 
             

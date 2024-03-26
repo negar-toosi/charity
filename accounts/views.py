@@ -30,7 +30,12 @@ def login_view(request):
             if user is not None:  
                 login(request,user) 
                 next_url = request.POST.get('next')
-                return redirect(next_url)
+                if next_url:
+                        return redirect(next_url)
+                else:
+                    # Redirect to a default page if next parameter is not present
+                    return redirect('/')
+             
             else:
                 username_or_email = form.cleaned_data.get('email')
                 password = form.cleaned_data.get('password')
@@ -38,7 +43,12 @@ def login_view(request):
                 if user is not None:  
                     login(request,user) 
                     next_url = request.POST.get('next')
-                    return redirect(next_url)
+                    print('************************************',next_url)
+                    if next_url:
+                        return redirect(next_url)
+                    else:
+                    # Redirect to a default page if next parameter is not present
+                        return redirect('/')
             errors = None
         else:
             errors = form.errors

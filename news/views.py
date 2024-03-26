@@ -37,8 +37,10 @@ def news_detail(request,nid=None):
     
     comments = Comments.objects.filter(news=news.id,approved=True).order_by('created_date')
     form = CommentForm()
+
     if news.login_require == True and not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('accounts:login'))
+
 
 
     # Handle form submission

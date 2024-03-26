@@ -80,8 +80,9 @@
                                             <h4><a href="{% url 'news:news_detail' nid=n.id %}" class="news-block-title-link">{{ n.title }}</a></h4>
                                         </div>
 
+                                        
                                         <div class="news-block-body">
-                                            <p>{{ n.content|truncatewords:20 }}</p>
+                                            <p>{{ n.content|safe|escape }}</p>
                                         </div>
                                     </div>
                                 </div>

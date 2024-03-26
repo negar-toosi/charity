@@ -216,5 +216,4 @@ CACHES = {
     }
 }
 
-# COMPRESS_ENABLED = not DEBUG
-
+MAINTENANCE_MODE = False
