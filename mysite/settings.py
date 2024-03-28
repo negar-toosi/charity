@@ -205,7 +205,7 @@ EMAIL_HOST_PASSWORD = 'xxsstzibrqrwrsvc'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-MAINTENANCE_MODE = False
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

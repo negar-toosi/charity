@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from news.models import News, Comments
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
-from news.forms import CommentForm
+from news.forms import CommentForm,NewsletterForm
 from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -27,7 +28,17 @@ def news_view(request,**kwargs):
         news = news.get_page(1)
     except EmptyPage:
         news = news.get_page(1)
-    context = {'news': news}
+    
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,'your ticket submited successfully')
+        else:
+            messages.add_message(request,messages.ERROR,'your ticket didnt submited successfully')
+    
+    form = NewsletterForm()
+    context = {'news': news, 'form': form}
     return render(request,'news/news.html',context)
 
 
@@ -91,3 +102,15 @@ def news_search(request):
             news = news.filter(content__contains=request.GET.get('s'))
     context = {'news': news}
     return render(request,'news/news.html',context)
+
+def news_newsletter(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,'your ticket submited successfully')
+        else:
+            messages.add_message(request,messages.ERROR,'your ticket didnt submited successfully')
+    
+    form = NewsletterForm()
+    return render(request,'base.html',{'form':form})

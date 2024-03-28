@@ -42,23 +42,22 @@ def login_view(request):
                 user = backend.authenticate(request=request, email=username_or_email, password=password)
                 if user is not None:  
                     login(request,user) 
-                    next_url = request.POST.get('next')
-                    print('************************************',next_url)
+                    next_url = request.POST.get('next') 
                     if next_url:
                         return redirect(next_url)
                     else:
                     # Redirect to a default page if next parameter is not present
                         return redirect('/')
-            errors = None
-        else:
-            errors = form.errors
-            print(errors)
-            messages.add_message(request,messages.ERROR,'your username or password was wrong')
+                else:
+                    errors = form.errors
+                    print(errors)
+                    messages.add_message(request,messages.ERROR,'your username or password was wrong')
 
+            
     else:
         form = CustomAuthenticationForm()
         errors = None
-   
+    
     context = {'form':form, 'errors':errors}
     return render(request,'accounts/login.html',context)
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from news.models import News, Category, Comments
+from news.models import News, Category, Comments, Newsletter
 from django_summernote.admin import SummernoteModelAdmin
 # Register your models here.
 
@@ -20,3 +20,4 @@ class CommentsAdmin(admin.ModelAdmin):
     summernote_fields = ('content',)
 
 admin.site.register(Category)
+admin.site.register(Newsletter)
