@@ -27,7 +27,7 @@
                             <h4><a class="news-block-title-link" href="{% url 'news:news_detail' nid=n.id %}">{{ n.title }}</a></h4>
                         </div>
                         <div class="news-block-body">
-                            <p>{{ n.content }}</p>
+                            <p>{{ n.content|truncatewords:10 }}</p>
                         </div>
                     </div>
                 </div>

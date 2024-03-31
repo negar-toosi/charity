@@ -82,17 +82,18 @@
 
                                         
                                         <div class="news-block-body">
-                                            <p>{{ n.content|safe|escape }}</p>
+                                            <p>{{ n.content|truncatewords:10 }}</p>
                                         </div>
                                     </div>
                                 </div>
                             {% endif %}
                             {% endfor %}
+                            <div class="d-flex justify-content-center py-4">
+                                {% include 'news/pagination.html' %}
+                            </div>
                         </div>
 
-                        <center>
-                            {% include 'news/pagination.html' %}
-                        </center>
+                        
 
                         <div class="col-lg-4 col-12 mt-4 mt-lg-0">
                             <form class="custom-form search-form" action="{% url 'news:search' %}" method="get" role="form">
@@ -113,6 +114,7 @@
                         </div>
 
                     </div>
+                    
                 </div>
             </section>
         </main>

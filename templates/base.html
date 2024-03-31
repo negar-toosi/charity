@@ -41,21 +41,21 @@ https://templatemo.com/tm-581-kind-heart-charity
           <div class="col-lg-8 col-12 d-flex flex-wrap">
             {% if request.user.is_authenticated %}
               <p class="d-flex me-4 mb-0">
-                <i class="bi-envelope me-2"></i>
+                <i class="bi-person me-2"></i>
 
                 <a href="#" style="text-transform: capitalize;">logged in as {{ request.user.username }}</a>
               </p>
               <p class="d-flex mb-0">
-                <i class="bi-envelope me-2"></i>
+                <i class="bi-box-arrow-right me-2"></i>
                 <a href="{% url 'accounts:logout' %}"  style="text-transform: capitalize;">logout</a>
               </p>
             {% else %}
               <p class="d-flex me-4 mb-0">
-                <i></i>
+                <i class="bi-box-arrow-in-right me-2"></i>
                 <a href="{% url 'accounts:login' %}?next={{request.path}}"  style="text-transform: capitalize;">login</a>
               </p>
               <p class="d-flex mb-0">
-                <i></i>
+                <i class="bi-box-arrow-in-right me-2"></i>
                 <a href="{% url 'accounts:signup' %}"  style="text-transform: capitalize;">signup</a>
               </p>
             {% endif %}
